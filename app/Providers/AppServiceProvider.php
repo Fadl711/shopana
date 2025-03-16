@@ -37,11 +37,14 @@ class AppServiceProvider extends ServiceProvider
             $countorder = OrderMaster::where('user_id', Auth::id())->count();
             View::share('countorder', $countorder);
         }
+        if (Schema::hasTable('category')) {
+
+            $categories = Category::all();
+            View::share('categories', $categories);
+        }
 
 
             // Share categories with all views
-            $categories = Category::all();
-            View::share('categories', $categories);
         Schema::defaultStringLength(191);
     });
     }
