@@ -25,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->app->booted(
+            function () {
         if (Schema::hasTable('cart')) {
 
             $countcart = Cart::where('user_id', Auth::id())->count();
@@ -41,6 +43,6 @@ class AppServiceProvider extends ServiceProvider
             $categories = Category::all();
             View::share('categories', $categories);
         Schema::defaultStringLength(191);
-
+    });
     }
 }
