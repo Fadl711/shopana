@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->app->booted(function () {
         $countcart = Cart::where('user_id', Auth::id())->count();
         $countorder = OrderMaster::where('user_id', Auth::id())->count();
         View::share('countcart', $countcart);
@@ -35,5 +36,6 @@ class AppServiceProvider extends ServiceProvider
             $categories = Category::all();
             View::share('categories', $categories);
         Schema::defaultStringLength(191);
+        });
     }
 }
