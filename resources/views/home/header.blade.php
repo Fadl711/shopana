@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="" dir="">
+<html lang="ar" dir="">
 
 <head>
     <meta charset="UTF-8">
@@ -51,6 +51,9 @@
     .header__menu ul li:hover .dropdown {
         display: block;
     }
+    .showcart{
+        display: none;
+    }
     /* إخفاء القائمة في وضع الهاتف المحمول */
 @media (max-width: 991px) {
     .header__menu {
@@ -64,7 +67,14 @@
         padding: 20px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-
+    .hideImg{
+        display: none;
+    }
+    .showcart{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .header__menu ul {
         flex-direction: column;
     }
@@ -77,11 +87,14 @@
         display: block;
         cursor: pointer;
         font-size: 24px;
-        margin: 60px 0;
+        margin: 30px 0;
     }
 
     .header__menu.active {
         display: block;
+    }
+    .header__logo{
+        max-width: 70%
     }
 }
 </style>
@@ -96,13 +109,13 @@
                 </div>
             </div>
             <div class="col-xl-6 col-lg-7" style="display: flex; justify-content: center; align-items: center;">
-                <nav class="header__menu" id="navbar">
+                <nav class="header__menu" id="navbar" style="direction: rtl">
                         <ul>
                             <li class="{{ Request::is('/') ? 'active' : '' }}">
-                                <a style="font-size: 20px;" href="{{url('/')}}">{{ __('messages.home') }}</a>
+                                <a style="font-size: 15px;" href="{{url('/')}}">{{ __('messages.home') }}</a>
                             </li>
                             <li class="{{ Request::is('category/men*') ? 'active' : '' }}">
-                                <a style="font-size: 20px;" href="{{ url('category/men') }}">{{ __('messages.men') }}</a>
+                                <a style="font-size: 15px;" href="{{ url('category/men') }}">{{ __('messages.men') }}</a>
                                 <ul class="dropdown">
                                     @foreach($categories as $category)
                                         @if($category->category_type === \App\Enums\CategoryType::MEN)
@@ -113,7 +126,7 @@
                                 </ul>
                             </li>
                             <li class="{{ Request::is('category/women*') ? 'active' : '' }}">
-                                <a style="font-size: 20px;" href="{{ url('category/women') }}">{{ __('messages.women') }}</a>
+                                <a style="font-size: 15px;" href="{{ url('category/women') }}">{{ __('messages.women') }}</a>
                                 <ul class="dropdown">
                                     @foreach($categories as $category)
                                         @if($category->category_type === \App\Enums\CategoryType::WOMEN)
@@ -123,7 +136,7 @@
                                 </ul>
                             </li>
                             <li class="{{ Request::is('category/girls*') ? 'active' : '' }}">
-                                <a style="font-size: 20px;" href="{{ url('category/girls') }}">{{ __('messages.girls') }}</a>
+                                <a style="font-size: 15px;" href="{{ url('category/girls') }}">{{ __('messages.girls') }}</a>
                                 <ul class="dropdown">
                                     @foreach($categories as $category)
                                         @if($category->category_type === \App\Enums\CategoryType::GIRLS)
@@ -133,7 +146,7 @@
                                 </ul>
                             </li>
                             <li class="{{ Request::is('category/boys*') ? 'active' : '' }}">
-                                <a style="font-size: 20px;" href="{{ url('category/boys') }}">{{ __('messages.boys') }}</a>
+                                <a style="font-size: 15px;" href="{{ url('category/boys') }}">{{ __('messages.boys') }}</a>
                                 <ul class="dropdown">
                                     @foreach($categories as $category)
                                         @if($category->category_type === \App\Enums\CategoryType::BOYS)
@@ -143,7 +156,7 @@
                                 </ul>
                             </li>
                             <li class="{{ Request::is('category/newborn*') ? 'active' : '' }}">
-                                <a style="font-size: 20px;" href="{{ url('category/newborn') }}">{{ __('messages.newborn') }}</a>
+                                <a style="font-size: 15px;" href="{{ url('category/newborn') }}">{{ __('messages.newborn') }}</a>
                                 <ul class="dropdown">
                                     @foreach($categories as $category)
                                         @if($category->category_type === \App\Enums\CategoryType::NEWBORN)
@@ -153,7 +166,7 @@
                                 </ul>
                             </li>
                             <li class="{{ Request::is('category/accessories*') ? 'active' : '' }}">
-                                <a style="font-size: 20px;" href="{{ url('category/accessories') }}">{{ __('messages.accessories') }}</a>
+                                <a style="font-size: 15px;" href="{{ url('category/accessories') }}">{{ __('messages.accessories') }}</a>
                                 <ul class="dropdown">
                                     @foreach($categories as $category)
                                         @if($category->category_type === \App\Enums\CategoryType::ACCESSORIES)
@@ -161,6 +174,17 @@
                                         @endif
                                     @endforeach
                                 </ul>
+                            </li>
+                            <li class="{{ Request::is('category/nuts*') ? 'active' : '' }}">
+                                <a style="font-size: 15px; margin:0 10px 0 0" href="{{ url('category/nuts') }}">{{ __('messages.nuts') }}</a>
+                                <ul class="dropdown">
+                                    @foreach($categories as $category)
+                                        @if($category->category_type === \App\Enums\CategoryType::NUTS)
+                                            <li><a href="{{ route('category_filter', ['category' => $category->name]) }}" style="color: black;">{{ $category->name }}</a></li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+
                             </li>
 
                         </ul>
@@ -200,8 +224,28 @@
                     </div>
             </div>
         </div>
-        <div class="canvas__open" id="mobile-menu-toggle">
-            <i class="fa fa-bars"></i>
+        <div class="showcart">
+            <div class="canvas__open" id="mobile-menu-toggle">
+                <i class="fa fa-bars"></i>
+            </div>
+                        <ul class="header__right__widget">
+                            <li>
+                                <a href="{{url('/cart')}}">
+                                    <span class="icon_cart_alt" style="font-size: 25px;"></span>
+                                    @auth
+                                        <div class="tip">{{$countcart}}</div>
+                                    @endauth
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{url('/orders')}}">
+                                    <span class="icon_bag_alt" style="font-size: 25px;"></span>
+                                    @auth
+                                        <div class="tip">{{$countorder}}</div>
+                                    @endauth
+                                </a>
+                            </li>
+                        </ul>
         </div>
 
     </div>

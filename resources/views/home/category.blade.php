@@ -1,4 +1,4 @@
-<section class="categories">
+<section class="categories hideImg">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6 p-0">
@@ -10,7 +10,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 ">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 p-0">
                     <div class="categories__item set-bg" data-setbg="img/categories/mens.jpg">

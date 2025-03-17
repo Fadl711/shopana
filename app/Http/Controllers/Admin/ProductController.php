@@ -31,12 +31,8 @@ class ProductController extends Controller
 
         $validatedData=$request->validated();
 
-        $name=$validatedData['name'];
-        $existingName=Products::where('name',$name)->first();
-        if($existingName){
-            toast('Product exists!','error');  
-            return redirect('admin/product/create');
-        }
+
+  
 
         $product= new Products;
         $product->name=$validatedData['name'];
@@ -53,11 +49,18 @@ class ProductController extends Controller
         $product->large=$request->input('large');
         $product->xl=$request->input('xl');
         $product->xxl=$request->input('xxl');
+        $product->custom_size_name=$request->input('custom_size_name');
+        $product->custom_size_quantity=$request->input('custom_size_quantity');
 
         $product->category_id=$request->category;
         $product->save();
         // size
-       
+        if($request->input('custom_size_name') && $request->input('custom_size_quantity')){
+            $sizeq =new Sizes;
+            $sizeq->size=$request->input('custom_size_name');
+            $sizeq->product_id=$product->id;
+            $sizeq->save();
+        }
         
         $selectedSizes = $request->input('size');
         if($selectedSizes){
@@ -144,7 +147,13 @@ class ProductController extends Controller
                 Sizes::where('product_id',$id)->delete();
             }
        }         
-     // 
+    if($request->input('custom_size_name') && $request->input('custom_size_quantity')){
+        $sizeq =new Sizes;
+        $sizeq->size=$request->input('custom_size_name');
+        $sizeq->product_id=$product->id;
+        $sizeq->save();
+    }
+    
     
         if($selectedSizes){
             foreach($selectedSizes as $selectedSize){
@@ -182,7 +191,8 @@ class ProductController extends Controller
         $product->large=$request->input('large');
         $product->xl=$request->input('xl');
         $product->xxl=$request->input('xxl');
-        // 
+        $product->custom_size_name=$request->input('custom_size_name');
+        $product->custom_size_quantity=$request->input('custom_size_quantity');
 
         $product->update();
 

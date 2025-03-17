@@ -10,6 +10,7 @@ enum CategoryType: string
     case BOYS = 'boys';
     case NEWBORN = 'newborn';
     case ACCESSORIES  = 'accessories';
+    case NUTS = 'nuts';
 
     public function label(): string
     {
@@ -20,6 +21,7 @@ enum CategoryType: string
             self::BOYS => 'ولادي',
             self::NEWBORN => 'المواليد',
             self::ACCESSORIES => 'العطور والاكسسوارات',
+            self::NUTS => 'المكسرات',
         };
     }
 
@@ -32,6 +34,7 @@ enum CategoryType: string
             self::BOYS,
             self::NEWBORN,
             self::ACCESSORIES,
+            self::NUTS,
         ];
     }
 }

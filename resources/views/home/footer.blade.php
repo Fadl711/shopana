@@ -48,9 +48,9 @@
                     </form> -->
                     <div class="footer__social">
                         <a href="https://www.facebook.com/share/18YPvqY6AR/" target="_blank"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-youtube-play"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
+{{--                         <a href="#"><i class="fa fa-twitter"></i></a> --}}
+{{--                         <a href="#"><i class="fa fa-youtube-play"></i></a>
+ --}}                        <a href="https://www.instagram.com/alyaser_shopp?igsh=cTdzZWJyZGtxNGw3"><i class="fa fa-instagram"></i></a>
      {{--                    <a href="#"><i class="fa fa-pinterest"></i></a> --}}
                     </div>
                 </div>

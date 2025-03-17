@@ -175,7 +175,8 @@
                             @auth
                                 <input name="user_id" value="{{auth()->user()->id}}" style="display: none;">
                             @endauth
-
+                            <input type="text" name="url" value="{{url()->previous()}}" style="display: none;">
+                            
                             {{-- عنوان المنتج --}}
                             <div class="custom-box" style="background-color: #f5f5f5; padding: 10px; border-radius: 5px;">
                                 <b><h3 class="text-primary">اسم المنتج: {{$product->name}}</h3></b>

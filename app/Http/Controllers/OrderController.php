@@ -48,7 +48,9 @@ class OrderController extends Controller
 
         $whatsappMessage .= "المنتجات:\n";
         foreach ($orders as $order) {
+            $nameC = Products::find($order['product_id']);
             $whatsappMessage .= "رقم المنتج: {$order['product_id']}\n"; // رقم المنتج في سطر لوحده
+            $whatsappMessage .= " الفئه: {$nameC->category->name}\n"; // رقم المنتج في سطر لوحده
             $whatsappMessage .= "اللون: {$order['color']}\n"; // اللون في سطر لوحده
             $whatsappMessage .= "الحجم: {$order['size']}\n"; // الحجم في سطر لوحده
             $whatsappMessage .= "الكمية: {$order['quantity']}\n"; // الكمية في سطر لوحده

@@ -28,7 +28,9 @@ class Products extends Model
         'medium',
         'large',
         'xl',
-        'xxl'
+        'xxl',
+        'custom_size_name',
+        'custom_size_quantity'
         // 
 
 
