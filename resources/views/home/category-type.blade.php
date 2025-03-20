@@ -3,6 +3,11 @@
 <section class="product spad">
     <style>
         /* Hide "Details" button by default */
+                    .custom-row{
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+            }
+        
         .details-button {
             display: none;
             position: absolute;
@@ -77,12 +82,16 @@
             .product__item h1 {
                 font-size: 1rem;
             }
+            .custom-row{
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+            }
         }
 
     </style>
 
     <div class="container">
-        <div class="row property__gallery">
+        <div class="row custom-row ">
 
             @foreach($categories1 as $category)
                 <div class="col-lg-3 col-md-4 col-sm-6 mix {{ $category->name }}">

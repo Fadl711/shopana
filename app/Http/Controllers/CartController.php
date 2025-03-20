@@ -15,6 +15,7 @@ class CartController extends Controller
     //
     public function addtocart(Request $request, $id)
     {
+
         $product = Products::findOrFail($id);
         $user_id = Auth::user()->id;
 
@@ -39,10 +40,11 @@ class CartController extends Controller
                 $cartItem->save();
                 toast('تم اضافة المنتج الى السلة!', 'success');
                 /* return redirect()->to($request->url); */
-                return redirect('/cart');
+
+                return redirect('/cart')->with('url', $request->url);
             } else {
 
-                $errorMessage = "You can add at most {$remainingQuantity} more of this product.";
+                $errorMessage = " لايوجد كمية حالية   {$remainingQuantity} ";
                 return redirect()->back()->with('error', $errorMessage);
             }
         } else {
@@ -55,12 +57,12 @@ class CartController extends Controller
                 $cart->price = $cart->rate * $cart->quantity;
 
 
-       /*          if ($request->input('selectedSize')) {
+                 if ($request->input('selectedSize')) {
                     $selectedSize = $request->input('selectedSize');
                     $cart->size_id = $selectedSize;
 
                     //size
-                    $size = Sizes::findOrFail($selectedSize);
+/*                     $size = Sizes::findOrFail($selectedSize);
                     $sizeName= $size->size;
                     $productSizeQty=$product->$sizeName;
 
@@ -70,17 +72,18 @@ class CartController extends Controller
 
                         $errorMessage = " {$product->name} product '{$sizeName}' Size out of stock ordered! Order less than {$productSizeQty}";
                         return redirect()->back()->with('error', $errorMessage);
-                    }
+                    } */
 
                 //
 
-                } */
+                }
 
                 $cart->save();
                 toast('Product added to cart!', 'success');
-                return redirect('/cart');
+
+                return redirect('/cart')->with('url', $request->url);
             } else {
-                $errorMessage = "You can add at most {$product->quantity} of this product.";
+                $errorMessage = "لايوجد كمية متاحة  {$product->quantity}";
                 return redirect()->back()->with('error', $errorMessage);
             }
         }

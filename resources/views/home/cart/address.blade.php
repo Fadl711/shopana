@@ -144,8 +144,10 @@ button[type="submit"]:hover {
             <input type="hidden" name="totalAmount" value="{{ $totalAmount }}">
             <input type="hidden" name="orders" value="{{$ordersJson}}">
 
-
-                <button type="submit" style="background-color: green; color: white; padding: 10px 20px; border: none; border-radius: 4px; font-size: 18px; cursor: pointer;">Place Order</button>
+            <div class="row">
+                <button type="submit" style="background-color: green; color: white; padding: 10px 20px; border: none; border-radius: 4px; font-size: 18px; cursor: pointer;">تأكيد الطلب</button>
+                <span style="color: red; font-size:30px;text-align:center" >عملية التوصيل با 500 ريال الى اي مكان داخل صنعاء</span>
+            </div>
 
 
         </form>

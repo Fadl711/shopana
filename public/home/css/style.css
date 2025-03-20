@@ -323,7 +323,7 @@ ol {
 }
 
 .header__logo {
-	padding: 26px 0;
+	padding: 5px 0;
 }
 
 .header__logo a {
@@ -506,25 +506,31 @@ ol {
 -----------------------*/
 
 .banner {
-	height: 500px;
+
+        width: 100%;
+        /* عرض الصورة بنسبة 100% من الحاوية */
+        height: 100%;
+        /* ارتفاع الصورة بنسبة 100% من الحاوية */
+        object-fit: cover;
+        /* تغطية الحاوية مع الحفاظ على نسبة العرض إلى الارتفاع */
 }
 
 .banner__text span {
 	font-size: 18px;
-	color: #ca1515;
+	color: #ffffff;
 	text-transform: uppercase;
 }
 
 .banner__text h1 {
 	font-size: 80px;
-	color: #111111;
+	color: #ffffff;
 	font-family: "Cookie", cursive;
 	margin-bottom: 15px;
 }
 
 .banner__text a {
 	font-size: 14px;
-	color: #111111;
+	color: #ffffff;
 	text-transform: uppercase;
 	font-weight: 700;
 	position: relative;
@@ -538,7 +544,7 @@ ol {
 	bottom: 0;
 	height: 2px;
 	width: 100%;
-	background: #ca1515;
+	background: #ffffff;
 	content: "";
 }
 

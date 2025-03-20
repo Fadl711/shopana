@@ -93,9 +93,10 @@
                             <i class="fa fa-star"></i>
                         </div>
                         @if($products->discounted_price)
-                            <div class="product__price">$ <s>{{$products->price}}</s> {{$products->discounted_price}}</div>
+                            <div class="product__price"> <s>{{$products->price}} ريال يمني</s> {{$products->discounted_price}} ريال يمني
+يال يمني</div>
                         @else
-                            <div class="product__price">$ {{$products->price}}</div>
+                            <div class="product__price"> {{$products->price}} ريال يمني</div>
                         @endif
 
                     </div>

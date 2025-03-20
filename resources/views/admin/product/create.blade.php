@@ -10,6 +10,10 @@
                 </h4>
             </div>
             <style>
+                label{
+                    display: block;
+                     text-align: right;
+                }
                 .card-body {
                     border: 1px solid #ccc; /* إضافة إطار حول الـ div */
                     padding: 20px; /* إضافة مساحة داخل الـ div */
@@ -23,21 +27,22 @@
                     <div class="row">
                         <div class="col-md mb-3">
                             <label>الاسم</label>
-                            <input type="text" name="name" style="width: 780px;" class="form-control"/>
+                            <input type="text" name="name"  class="form-control"/>
                             @error('name')
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
+                        </div>
+                        <div class="col-md mb-3">
+                            <label>الكمية</label>
+                            <input  type="number" name="quantity" id="quantity" class="form-control" min="1" step="1"/>
+                            @error('quantity')
                             <small class="text-danger">{{$message}}</small>
                             @enderror
                         </div>
                     </div>
                     <br>
-                    <div class="row" style="float: left; margin-left: 8px;">
-                        <label>الكمية</label><br>
-                        <input style="width: 200px; float: right; margin-left: 10px;" type="number" name="quantity" id="quantity" class="form-control" min="1" step="1"/>
-                        @error('quantity')
-                        <small class="text-danger">{{$message}}</small>
-                        @enderror
-                    </div>  <br>  <br> <br>
-                    <div style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;">
+
+{{--                     <div style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;">
                         <label style="display: inline-block; width: 100px;">حجم مخصص:</label>
                         <input type="text" name="custom_size_name" id="customSizeName"
                             class="form-control"
@@ -51,8 +56,15 @@
                             min="1" step="1"
                             oninput="validateTotal()"
                             placeholder="الكمية"/>
-                    </div>
-                    <div class="row">
+                    </div> --}}
+                     <div style="display: block " id="sizes">
+                        <label style="text-align: left" >الحجم</label>
+        <input  type="text" name="sizes[]" placeholder="اسم الحجم">
+    </div>
+    <button type="button" onclick="addSize()">اضافة حجم </button>
+
+
+                    {{-- <div class="row">
                         <div class="col-md mb-3">
                             <div class="row">
                                 <div class="row" style="float: right; margin-left: 10px;">
@@ -74,9 +86,9 @@
                                 <br><br><br>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="row" style="float: left; width: 900px; margin-left: 1px;">
+              {{--       <div class="row" style="float: left; width: 900px; margin-left: 1px;">
                         <label for="small">صغير:</label><br>
                         <input type="number" name="small" id="small" class="form-control" style="width: 100px;" oninput="validateTotal()"  min="1" step="1" readonly />
                         <br>
@@ -95,8 +107,8 @@
                         <div id="error-message" style="color: red;"></div>
                         <br>
                         <br><br>
-                    </div>
-                    <br><br><br><br><br>
+                    </div> --}}
+                    <br>
                     <div>
                     </div>
                     <br>
@@ -158,15 +170,20 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md mb-3">
-                            <label>الوصف</label>
-                            <textarea style="height:90px; width:543px" name="description" class="form-control"></textarea>
-                            @error('description')
-                            <small class="text-danger">{{$message}}</small>
-                            @enderror
-                        </div>
-                    </div>
+<div class="row">
+    <div class="col-md mb-3">
+        <!-- نص التسمية (Label) -->
+        <label style="">الوصف</label>
+
+        <!-- حقل الوصف (Textarea) -->
+        <textarea style="height: 90px; width: 543px; text-align: right;" name="description" class="form-control"></textarea>
+
+        <!-- عرض رسالة الخطأ إذا وجدت -->
+        @error('description')
+            <small class="text-danger" style="display: block; text-align: right;">{{ $message }}</small>
+        @enderror
+    </div>
+</div>
 
                     <div class="col-md-12 mb-3">
                         <button type="submit" class="btn btn-primary text-white float-end">حفظ</button>
@@ -176,7 +193,7 @@
         </div>
     </div>
     <script>
-        function toggleInputFields() {
+   /*      function toggleInputFields() {
             var enableInputCheckbox = document.getElementById("enableInput");
             var inputFields = document.querySelectorAll("#small");
 
@@ -246,9 +263,9 @@
                     inputFields[i].value = '';
                 }
             }
-        }
+        } */
     </script>
-    <script>
+{{--     <script>
         function validateTotal() {
             const input1 = parseInt(document.getElementById("small").value) || 0;
             const input2 = parseInt(document.getElementById("medium").value) || 0;
@@ -264,9 +281,9 @@
                 document.getElementById("error-message").textContent = "";
             }
         }
-    </script>
+    </script> --}}
     <script>
-        function validateTotal() {
+/*         function validateTotal() {
             var smallValue = parseInt(document.getElementById("small").value) || 0;
             var mediumValue = parseInt(document.getElementById("medium").value) || 0;
             var largeValue = parseInt(document.getElementById("large").value) || 0;
@@ -276,7 +293,15 @@
 
             var total = smallValue + mediumValue + largeValue + xlValue + xxlValue + customSizeQuantity;
             document.getElementById("quantity").value = total;
-        }
+        } */
+            function addSize() {
+        const sizesDiv = document.getElementById('sizes');
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.name = 'sizes[]';
+        input.placeholder = 'اسم الحجم';
+        sizesDiv.appendChild(input);
+    }
     </script>
 
 @endsection

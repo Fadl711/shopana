@@ -16,6 +16,10 @@
                     border-radius: 5px; /* زوايا مدورة لمظهر صندوقي */
                     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* إضافة ظل لإعطاء عمق */
                 }
+                                label{
+                    display: block;
+                     text-align: right;
+                }
             </style>
             <div class="card-body">
                 <form action="{{url('admin/product/'.$product->id.'/update')}}"  method="POST" enctype="multipart/form-data">
@@ -38,7 +42,16 @@
                         </div>
                     </div>
                     <br>
-                    <div style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;">
+                                        <div id="sizes">
+                            @foreach($product->sizes as $index => $size)
+                                <input type="text" name="sizes[{{ $index }}]" placeholder="اسم الحجم" value="{{ $size->size }}">
+                            @endforeach
+                        </div>
+
+    <!-- زر إضافة حجم جديد -->
+                            <button type="button" onclick="addSize()">اضافة حجم </button>
+
+{{--                     <div style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;">
                         <label style="display: inline-block; width: 100px;">حجم مخصص:</label>
                         <input type="text" name="custom_size_name" id="customSizeName"
                             value="{{$product->custom_size_name}}"
@@ -54,9 +67,9 @@
                             min="1" step="1"
                             oninput="validateTotal()"
                             placeholder="الكمية"/>
-                    </div>
+                    </div> --}}
                     {{--  --}}
-                    <div class="row">
+            {{--         <div class="row">
                         <div class="col-md mb-3">
                             <div class="row">
                                 <div class="row" style="float: right; margin-left: 10px;">
@@ -78,10 +91,10 @@
                                 <br><br><br>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     {{--  --}}
-                    <div class="row">
+       {{--              <div class="row">
                         <div class="col-md mb-3">
                             <div class="row" style="float: right; width: 900px; margin-left: 10px;">
                                 <label for="small">صغير:</label><br>
@@ -104,7 +117,7 @@
                                 <br><br>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <br>
 
                     <div class="row">
@@ -199,7 +212,7 @@
     </div>
 
     {{-- Scripts --}}
-    <script>
+{{--     <script>
         function toggleInputFields() {
             var enableInputCheckbox = document.getElementById("enableInput");
             var inputFields = document.querySelectorAll("#small");
@@ -259,9 +272,9 @@
                 }
             }
         }
-    </script>
+    </script> --}}
 
-    <script>
+{{--     <script>
         function validateTotal() {
             const input1 = parseInt(document.getElementById("small").value) || 0;
             const input2 = parseInt(document.getElementById("medium").value) || 0;
@@ -276,10 +289,10 @@
                 document.getElementById("error-message").textContent = "";
             }
         }
-    </script>
+    </script> --}}
 
     <script>
-        function validateTotal() {
+       /*  function validateTotal() {
             var smallValue = parseInt(document.getElementById("small").value) || 0;
             var mediumValue = parseInt(document.getElementById("medium").value) || 0;
             var largeValue = parseInt(document.getElementById("large").value) || 0;
@@ -288,7 +301,15 @@
 
             var total = smallValue + mediumValue + largeValue + xlValue + xxlValue;
             document.getElementById("quantity").value = total;
-        }
+        } */
+            function addSize() {
+        const sizesDiv = document.getElementById('sizes');
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.name = 'sizes[]'; // اسم الحقل كمصفوفة
+        input.placeholder = 'اسم الحجم';
+        sizesDiv.appendChild(input);
+    }
     </script>
 
 @endsection

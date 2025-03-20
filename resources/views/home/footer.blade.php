@@ -3,9 +3,7 @@
         <div class="row">
             <div class="col-lg-4 col-md-6 col-sm-7">
                 <div class="footer__about">
-                    <div class="footer__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
-                    </div>
+
                     <p>صنعاء - شارع الرباط - مقابل جامعة الرازي للعلوم الطبية, Sanaa, Yemen</p>
                     <!-- <div class="footer__payment">
                         <a href="#"><img src="img/payment/payment-1.png" alt=""></a>
@@ -60,7 +58,7 @@
             <div class="col-lg-12">
                 <!-- لا يمكن إزالة الرابط الخاص بـ Colorlib. القالب مرخص بموجب CC BY 3.0. -->
                 <div class="footer__copyright__text">
-                    <p>حقوق النشر &copy; <script>document.write(new Date().getFullYear());</script> جميع الحقوق محفوظة لشركة الياسر للتجارة <i class="fa fa-heart" aria-hidden="true"></i> </p>
+<p>حقوق النشر &copy; <script>document.write(new Date().getFullYear());</script> جميع الحقوق محفوظة لـ ANA Shops <i class="fa fa-heart" aria-hidden="true"></i> </p>
                 </div>
                 <!-- لا يمكن إزالة الرابط الخاص بـ Colorlib. القالب مرخص بموجب CC BY 3.0. -->
             </div>

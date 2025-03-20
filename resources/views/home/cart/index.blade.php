@@ -105,12 +105,24 @@ h6.bold-and-big {
                                             {{ __('messages.shop_items') }}
                                         </a>
                                         @else
-                                        <a href="{{url('/products')}}" class="hover-button float-left">
-                                            {{ __('messages.continue_shopping') }}
-                                        </a>
-                                        <div class="text-right" style="padding-right:70px;">
-                                            <strong>{{ __('messages.total_amount') }}:</strong> $ {{$totalAmount}}
-                                        </div>
+                                            @if (session('url'))
+                                            <a href="{{session('url')}}" class="hover-button float-left">
+                                                {{ __('messages.continue_shopping') }}
+                                            </a>
+                                            @else
+                                            <a href="{{url('/products')}}" class="hover-button float-left">
+                                                {{ __('messages.continue_shopping') }}
+                                            </a>
+
+                                            @endif
+{{--
+                                            <a href="{{url('/products')}}" class="hover-button float-left">
+                                                {{ __('messages.continue_shopping') }}
+                                            </a>
+                                            @endif --}}
+                                            <div class="text-right" style="padding-right:70px;">
+                                                <strong>{{ __('messages.total_amount') }}:</strong>  {{$totalAmount}} ريال
+                                            </div>
                                         @endif
                                     </td>
                                 </tr>

@@ -32,36 +32,46 @@ class ProductController extends Controller
         $validatedData=$request->validated();
 
 
-  
+
 
         $product= new Products;
         $product->name=$validatedData['name'];
         $product->quantity=$validatedData['quantity'];
         $product->price=$validatedData['price'];
-        $product->discounted_price=$validatedData['dis_price'];  
+        $product->discounted_price=$validatedData['dis_price'];
         $product->description=$validatedData['description'];
         $product->color=$validatedData['color'];
         $product->tags=$validatedData['tags'];
 
-        // sizes 
-        $product->small=$request->input('small');
+        // sizes
+/*         $product->small=$request->input('small');
         $product->medium=$request->input('medium');
         $product->large=$request->input('large');
         $product->xl=$request->input('xl');
-        $product->xxl=$request->input('xxl');
-        $product->custom_size_name=$request->input('custom_size_name');
-        $product->custom_size_quantity=$request->input('custom_size_quantity');
-
+        $product->xxl=$request->input('xxl'); */
+/*         $product->custom_size_name=$request->input('custom_size_name');
+        $product->custom_size_quantity=$request->input('custom_size_quantity'); */
         $product->category_id=$request->category;
         $product->save();
+
+        $id=$product->id;
+        if($request->sizes){
+            foreach ($request->sizes as $size) {
+                Sizes::create([
+                    'product_id' => $id,
+                    'size' => $size,
+                ]);
+            }
+
+        }
         // size
-        if($request->input('custom_size_name') && $request->input('custom_size_quantity')){
+       /*  if($request->input('custom_size_name') && $request->input('custom_size_quantity')){
             $sizeq =new Sizes;
             $sizeq->size=$request->input('custom_size_name');
             $sizeq->product_id=$product->id;
             $sizeq->save();
         }
-        
+
         $selectedSizes = $request->input('size');
         if($selectedSizes){
         foreach($selectedSizes as $selectedSize){
@@ -72,14 +82,14 @@ class ProductController extends Controller
             $size->save();
 
         }
-        }
-        // 
+        } */
+        //
 
         if($request->hasFile('image')){
 
             $i=1;
             foreach($request->file('image') as $image){
-              
+
                 $extension=$image->getClientOriginalExtension();
                 $filename=time().$i++.'.'.$extension;
                 $image->move('uploads/products/',$filename);
@@ -87,11 +97,11 @@ class ProductController extends Controller
 
                 $prodImage= new ProductImage;
                 $prodImage->image=$filepath;
-                $prodImage->product_id=$product->id;
+                $prodImage->product_id=$id;
                 $prodImage->save();
 
-            }           
-        }       
+            }
+        }
         toast('Product created sucessfully!','success');
 
         return redirect('admin/product');
@@ -104,11 +114,11 @@ class ProductController extends Controller
         $category=Category::all();
 
         $prodImage=ProductImage::where('product_id',$id)->get();
-       
-        
+
+
 
         return view('admin.product.edit',compact('product','category','prodImage'));
-       
+
     }
 
     public function update(ProductFormRequest $request,$id){
@@ -118,23 +128,23 @@ class ProductController extends Controller
 
         $product = Products::findOrFail($id);
 
-        // 
+        //
         if(($product->name !== $validatedData['name']) && Products::where('name', $validatedData['name'])->exists()){
-            toast('Product exists!','error');  
+            toast('Product exists!','error');
             return back();
         }
-        // 
+        //
 
-          // 
-          $selectedSizes = $request->input('size');
-          //    
+          //
+         /*  $selectedSizes = $request->input('size');
+          //
        $allSizes=['small','medium','large','xl','xxl'];
 
        $uncheckedSizes=[];
-       
-       if(is_array($selectedSizes)){  
 
-            $uncheckedSizes=array_diff($allSizes,$selectedSizes); 
+       if(is_array($selectedSizes)){
+
+            $uncheckedSizes=array_diff($allSizes,$selectedSizes);
             foreach($uncheckedSizes as $uncheckedSize){
             if(Sizes::where('product_id',$id)->where('size',$uncheckedSize)->first()){
                 Sizes::where('product_id',$id)->where('size',$uncheckedSize)->first()->delete();
@@ -146,20 +156,20 @@ class ProductController extends Controller
             if(Sizes::where('product_id',$id)->get()){
                 Sizes::where('product_id',$id)->delete();
             }
-       }         
+       }
     if($request->input('custom_size_name') && $request->input('custom_size_quantity')){
         $sizeq =new Sizes;
         $sizeq->size=$request->input('custom_size_name');
         $sizeq->product_id=$product->id;
         $sizeq->save();
     }
-    
-    
+
+
         if($selectedSizes){
             foreach($selectedSizes as $selectedSize){
 
-                $size = Sizes::where('product_id',$id)->where('size',$selectedSize)->first(); 
-                if($size){             
+                $size = Sizes::where('product_id',$id)->where('size',$selectedSize)->first();
+                if($size){
                     $size->size=$selectedSize;
                     $size->product_id=$product->id;
                     $size->update();
@@ -174,35 +184,45 @@ class ProductController extends Controller
                 }
 
             }
-        }
+        } */
     //
 
         $product->name=$validatedData['name'];
         $product->quantity=$validatedData['quantity'];
         $product->price=$validatedData['price'];
-        $product->discounted_price=$validatedData['dis_price'];  
+        $product->discounted_price=$validatedData['dis_price'];
         $product->description=$validatedData['description'];
         $product->color=$validatedData['color'];
         $product->tags=$validatedData['tags'];
         $product->category_id=$request->category;
-        // size
-        $product->small=$request->input('small');
+            // size
+            /*         $product->small=$request->input('small');
         $product->medium=$request->input('medium');
         $product->large=$request->input('large');
         $product->xl=$request->input('xl');
-        $product->xxl=$request->input('xxl');
-        $product->custom_size_name=$request->input('custom_size_name');
-        $product->custom_size_quantity=$request->input('custom_size_quantity');
+        $product->xxl=$request->input('xxl'); */
+            /*         $product->custom_size_name=$request->input('custom_size_name');
+        $product->custom_size_quantity=$request->input('custom_size_quantity'); */
 
+            $product->sizes()->delete();
         $product->update();
 
-         
+            $id = $product->id;
+if($request->sizes){
+    foreach ($request->sizes as $size) {
+        Sizes::create([
+            'product_id' => $id,
+            'size' => $size,
+        ]);
+    }
+
+}
         if($request->hasfile('image')){
 
 
             $i=1;
             foreach($request->file('image') as $image){
-              
+
                 $extension=$image->getClientOriginalExtension();
                 $filename=time().$i++.'.'.$extension;
                 $image->move('uploads/products/',$filename);
@@ -210,21 +230,21 @@ class ProductController extends Controller
 
                 $prodImage= new ProductImage;
                 $prodImage->image=$filepath;
-                $prodImage->product_id=$product->id;
+                $prodImage->product_id=$id;
                 $prodImage->save();
 
             }
 
-        }    
- 
+        }
+
         toast('Product updated sucessfully!','success');
         return back();
     } catch (QueryException $e) {
         // Handle database exception (e.g., foreign key constraint violation)
         toast('Error updating product sizes in order already exists !', 'error');
         return back();
-    } 
-       
+    }
+
     }
     public function product_details($id){
         $categories = Category::all(); // select * from categories;
@@ -273,30 +293,30 @@ class ProductController extends Controller
         $categories = Category::all();
         $countcart = Cart::where('user_id', auth()->id())->count();
         $countorder = OrderMaster::where('user_id', auth()->id())->count();
-        
+
         $query = $request->input('query');
         $productQuery = Products::query();
-        
+
         if ($query) {
             $productQuery->where('name', 'LIKE', "%{$query}%");
         }
-        
+
         $product = $productQuery->paginate(12);
-        
+
         return view('home.category_filter', compact('product', 'categories', 'query', 'countcart', 'countorder'));
     }
     public function delImg($id){
 
         $prodImage=ProductImage::findOrFail($id);
         $ImagePath=$prodImage->image;
-        File::delete($ImagePath); 
+        File::delete($ImagePath);
         $prodImage->delete();
         toast('Image Deleted!','success');
         return back();
 
-      
+
 
     }
-  
-  
+
+
 }

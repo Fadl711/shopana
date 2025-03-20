@@ -69,6 +69,17 @@
 .product-category {
     display: none;
 }
+            .custom-row{
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+            }
+            img{
+                margin: auto;
+                    width: 100%; /* عرض ثابت */
+    aspect-ratio: 1 / 1; /* نسبة العرض إلى الارتفاع (مربع) */
+    object-fit: cover;
+            }
+
     </style>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
@@ -108,7 +119,7 @@
                 </div>
             </div><br>
 
-            <div class="row property__gallery">
+            <div class="row property__gallery custom-row">
                 @foreach($product as $products)
                 <div class="col-lg-3 col-md-4 col-sm-6 mix" data-category="{{ $products->category->name }}">
                     <div class="product__item">
@@ -145,9 +156,9 @@
                             </div>
 
                             @if($products->discounted_price)
-                                <div class="product__price">$ <s>{{$products->price}}</s> {{$products->discounted_price}}</div>
+                                <div class="product__price"><s>{{$products->price}} ريال يمني</s> {{$products->discounted_price}} ريال يمني</div>
                             @else
-                                <div class="product__price">$ {{$products->price}}</div>
+                                <div class="product__price"> {{$products->price}} ريال يمني</div>
                             @endif
 
                             <p class="product-category">{{$products->category->name}}</p>
@@ -180,9 +191,9 @@
             $('.filter__controls li').removeClass('active');
             // Add active class to clicked item
             $(this).addClass('active');
-            
+
             var selectedCategory = $(this).attr('data-category');
-            
+
             // Show/hide products based on category
             if (selectedCategory === 'all') {
                 $('.property__gallery .mix').fadeIn();
