@@ -43,6 +43,19 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'r2' => [
+            'driver' => 's3',
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION', 'auto'),
+            'bucket' => env('AWS_BUCKET'),
+            'endpoint' => env('AWS_ENDPOINT'),
+            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'url' => env('AWS_URL', 'https://fls-9e750abb-5d0f-4bb8-be2a-716551a790b0.laravel.cloud'),
+            'visibility' => 'public',
+            'throw' => true,
+
+        ],
 
         's3' => [
             'driver' => 's3',

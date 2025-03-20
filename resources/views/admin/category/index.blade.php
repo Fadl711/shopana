@@ -8,13 +8,13 @@
                 border-collapse: collapse;
                 width: 100%;
             }
-        
+
             th, td {
                 border: 1px solid #ddd;
                 padding: 8px;
                 text-align: right;
             }
-        
+
             /* Style the table header row */
             th {
                 background-color: #f2f2f2;
@@ -46,13 +46,13 @@
                     </a>
                 </h4>
             </div>
-            
+
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
                             <div class="card-body">
-                                <div class="card-body table-responsive p-2">    
+                                <div class="card-body table-responsive p-2">
                                     <table class="datatable table">
                                         <thead>
                                             <tr>
@@ -71,24 +71,24 @@
                                                 <td>{{$category->status == '1' ? __('messages.active') : __('messages.inactive')}}</td>
                                                 <td>
                                                     @if($category->image)
-                                                    <img src="{{asset('/uploads/category/'.$category->image)}}"
-                                                        style="width: 80px; height:80px;" 
+                                                    <img src="{{$category->image}}"
+                                                        style="width: 80px; height:80px;"
                                                         alt="{{ __('messages.no_image') }}"/>
                                                     @else
                                                         <h5>{{ __('messages.no_image') }}</h5>
-                                                    @endif 
+                                                    @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{url('admin/category/'.$category->id.'/edit')}}" 
+                                                    <a href="{{url('admin/category/'.$category->id.'/edit')}}"
                                                         class="btn btn-success btn-sm text-white">{{ __('messages.edit') }}</a>
                                                     &nbsp;
-                                                    <a href="{{url('admin/category/'.$category->id.'/delete')}}" 
+                                                    <a href="{{url('admin/category/'.$category->id.'/delete')}}"
                                                         class="btn btn-danger btn-sm text-white">{{ __('messages.delete') }}</a>
                                                 </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
-                                    </table>    
+                                    </table>
                                 </div>
                                 <br>
                                 <div class="pagination">{{$categories->links()}}</div>
@@ -98,5 +98,5 @@
                 </div>
             </section>
         </div>
-    </div>   
+    </div>
 @endsection

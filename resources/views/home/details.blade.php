@@ -158,7 +158,7 @@
                                 <div class="exzoom_img_box">
                                     <ul class='exzoom_img_ul'>
                                         @foreach ($product->productImage as $images)
-                                            <li><img src="{{ asset($images->image) }}" /></li>
+                                            <li><img src="{{ $images->image }}" /></li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -283,7 +283,7 @@
                         <a href="{{ route('product_details', ['id' => $relatedProduct->id]) }}">
                             <div class="product-image">
                                 @if ($relatedProduct->productImage->isNotEmpty())
-                                    <img src="{{ asset($relatedProduct->productImage[0]->image) }}"
+                                    <img src="{{ $relatedProduct->productImage[0]->image }}"
                                         alt="Product Image">
                                 @else
                                     <img src="img/NoImage.jpg" alt="Alternative Text">

@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\QueryException;
 use App\Http\Requests\ProductFormRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -92,11 +93,14 @@ class ProductController extends Controller
 
                 $extension=$image->getClientOriginalExtension();
                 $filename=time().$i++.'.'.$extension;
-                $image->move('uploads/products/',$filename);
-                $filepath='uploads/products/'.$filename;
+/*                 $image->move('uploads/products/',$filename);
+                $filepath='uploads/products/'.$filename; */
+                $path = 'images/' . $filename;
+                Storage::disk('r2')->put($path, file_get_contents($image), 'public');
 
+                $url = Storage::disk('r2')->url($path);
                 $prodImage= new ProductImage;
-                $prodImage->image=$filepath;
+                $prodImage->image= $url;
                 $prodImage->product_id=$id;
                 $prodImage->save();
 
@@ -225,11 +229,14 @@ if($request->sizes){
 
                 $extension=$image->getClientOriginalExtension();
                 $filename=time().$i++.'.'.$extension;
-                $image->move('uploads/products/',$filename);
-                $filepath='uploads/products/'.$filename;
+                    /*                 $image->move('uploads/products/',$filename);
+                $filepath='uploads/products/'.$filename; */
+                    $path = 'images/' . $filename;
+                    Storage::disk('r2')->put($path, file_get_contents($image), 'public');
 
+                    $url = Storage::disk('r2')->url($path);
                 $prodImage= new ProductImage;
-                $prodImage->image=$filepath;
+                $prodImage->image= $url;
                 $prodImage->product_id=$id;
                 $prodImage->save();
 

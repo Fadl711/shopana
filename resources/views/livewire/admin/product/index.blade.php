@@ -7,13 +7,13 @@
                     border-collapse: collapse; /* Collapse borders to avoid double borders */
                     width: 100%; /* Optional: Make the table full width of its container */
                 }
-            
+
                 th, td {
                     border: 1px solid #ddd; /* Add a 1px solid border to table header and cells */
                     padding: 8px; /* Add some padding for better spacing */
                     text-align: left; /* Optional: Align text to the left within cells */
                 }
-            
+
                 /* Style the table header row */
                 th {
                     background-color: #f2f2f2; /* Add a background color to the header row */
@@ -36,7 +36,7 @@
                         </h3>
                     </div>
                         <div class="card-body">
-                        <div class="card-body table-responsive p-2">    
+                        <div class="card-body table-responsive p-2">
 
                             <table class="datatable table">
                                 <thead>
@@ -51,12 +51,12 @@
                                         <th>Picture</th>
                                         <th>Category</th>
                                         <th>Action</th>
-                                    </tr>   
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($products as $product)
 
-                                    
+
                                     <tr>
                                         <td>{{$product->id}}</td>
                                         <td>{{$product->name}}</td>
@@ -73,7 +73,7 @@
                                         </td>
                                         <td>
                                             @if($product->productImage->isNotEmpty())
-                                                <img src="{{ asset($product->productImage[0]->image) }}"
+                                                <img src="{{$product->productImage[0]->image }}"
                                                     style="width: 80px; height: 80px;" alt="No image"/>
                                             @else
                                                 <h5>No Image</h5>
@@ -82,9 +82,9 @@
                                         <td>{{$product->category->name}}</td>
                                         <td>
                                             <a href="{{url('admin/product/'.$product->id.'/edit')}}" class="btn btn-success text-white">Edit</a>
-                                            
+
                                             <!-- Button trigger modal -->
-                                            <a  class="btn btn-danger text-white" 
+                                            <a  class="btn btn-danger text-white"
                                             wire:click="deleteProduct({{$product->id}})"
                                             data-toggle="modal" data-target="#deleteModal">
                                                 Delete
@@ -93,31 +93,31 @@
                                         </td>
                                     </tr>
                                     @endforeach
-                                    
-                                    
+
+
 
                                 </tbody>
-                            
+
 
 
                             </table>
 
-                        
+
                         </div>
                         <br>
                         <div class="pagination float-right"
                 >{{$products->links()}}</div>
-                    
-        
+
+
 
                 </div>
 
-                
+
             </div>
 
         </div>
 
-    
+
     <!-- Modal -->
     <div  wire:ignore.self class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -136,14 +136,14 @@
                                 @if(isset($product))
                                  {{{$product->id}}}
                                 @endif
-                                
+
                             </h6>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </div>
-                </form>            
+                </form>
             </div>
         </div>
     </div>

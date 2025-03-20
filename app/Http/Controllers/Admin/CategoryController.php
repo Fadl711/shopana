@@ -10,6 +10,7 @@ use App\Enums\CategoryType;
 use Illuminate\Support\Facades\Toast;
 use App\Http\Requests\CategoryFormRequest;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -46,8 +47,11 @@ class CategoryController extends Controller
             $ext=$file->getClientOriginalExtension();
             $filename=time().'.'.$ext;
 
-            $file->move('uploads/category/',$filename);
-            $category->image= $filename;
+            $path = 'imagesCategory/' . $filename;
+            Storage::disk('r2')->put($path, file_get_contents($file), 'public');
+
+            $url = Storage::disk('r2')->url($path);
+            $category->image= $url;
 
         }
 
@@ -78,17 +82,21 @@ class CategoryController extends Controller
 
          if ($request->hasFile('image')) {
 
-            $path='uploads/category/'.$category->image;
-            if(File::exists($path)){
-                File::delete($path);
+
+            if(Storage::disk("r2")->exists($category->image)){
+                Storage::disk("r2")->delete($category->image);
             }
 
             $file = $request->file('image');
             $ext=$file->getClientOriginalExtension();
             $filename=time().'.'.$ext;
 
-            $file->move('uploads/category/',$filename);
-            $category->image= $filename;
+            /*             $file->move('uploads/category/',$filename); */
+            $path = 'imagesCategory/' . $filename;
+            Storage::disk('r2')->put($path, file_get_contents($file), 'public');
+
+            $url = Storage::disk('r2')->url($path);
+            $category->image= $url;
 
         }
         $category->status=$request->status == true ? '1' :'0';
@@ -110,9 +118,8 @@ class CategoryController extends Controller
         try{
             $category=Category::findOrFail($id);
             $category->delete();
-            $path='uploads/category/'.$category->image;
-            if(File::exists($path)){
-                File::delete($path);
+            if (Storage::disk("r2")->exists($category->image)) {
+                Storage::disk("r2")->delete($category->image);
             }
 
             toast('Category Deleted!','info');

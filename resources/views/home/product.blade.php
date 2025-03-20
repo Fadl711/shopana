@@ -125,8 +125,8 @@
                     <div class="product__item">
 
                         @if($products->productImage->isNotEmpty())
-                            <div class="product__item__pic set-bg" data-setbg="uploads/products/{{$products->productImage[0]->image}}">
-                                <img src="{{ asset($products->productImage[0]->image) }}" alt="Product Image">
+                            <div class="product__item__pic set-bg" data-setbg="{{$products->productImage[0]->image}}">
+                                <img src="{{$products->productImage[0]->image }}" alt="Product Image">
                                 <!-- <div class="label stockout">out of stock</div> -->
                                 <!-- <div class="label">Sale</div> -->
                                 <!-- <div class="label new">New</div> -->

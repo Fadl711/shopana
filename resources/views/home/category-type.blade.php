@@ -7,7 +7,7 @@
     margin-right: 0 !important;
     margin-left: 0 !important;
             }
-        
+
         .details-button {
             display: none;
             position: absolute;
@@ -96,9 +96,9 @@
             @foreach($categories1 as $category)
                 <div class="col-lg-3 col-md-4 col-sm-6 mix {{ $category->name }}">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="{{ asset('uploads/category/' . $category->image) }}">
+                        <div class="product__item__pic set-bg" data-setbg="{{ $category->image }}">
                             <ul class="product__hover">
-                                <img src="{{ asset('uploads/category/' . $category->image) }}" alt="{{ $category->name }}">
+                                <img src="{{  $category->image }}" alt="{{ $category->name }}">
                             </ul>
                             <!-- Details button (hidden by default) -->
                             <a href="{{ route('category_filter', ['category' => $category->name]) }}" class="details-button">عرض</a>

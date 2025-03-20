@@ -117,7 +117,7 @@
                     <a href="{{ route('cancel_order', $orderMaster->id) }}" class="cancel-button">Cancel Order</a>
                 @endif
             </div>
-            
+
         </div>
 
         <!-- Display Order items associated with this OrderMaster -->
@@ -137,8 +137,8 @@
                 <tr>
                     <td>
                         @if($order->productImage->isNotEmpty())
-                        <img 
-                        src="{{ asset($order->productImage[0]->image) }}"
+                        <img
+                        src="{{$order->productImage[0]->image }}"
                         {{-- src="{{asset('uploads/products/'.$order->productImage[0]->image)}}"  --}}
                         alt="Product Image" />
                         @else

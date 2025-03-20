@@ -51,7 +51,7 @@
                         <div class="col-md-6 mb-3">
                             <label>الصورة</label>
                             <input type="file" name="image" class="form-control"/><br>
-                            <img src="{{asset('/uploads/category/'.$category->image)}}"
+                            <img src="{{$category->image}}"
                              style="width: 80px; height:80px;"/>
                         </div>
                     </div>

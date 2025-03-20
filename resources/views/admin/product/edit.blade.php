@@ -189,7 +189,7 @@
                             @if($prodImage)
                                 @foreach($prodImage as $image)
                                     <div class="col-md-2">
-                                        <img src="{{asset($image->image)}}" style="width:80px; height:80px;"
+                                        <img src="{{$image->image}}" style="width:80px; height:80px;"
                                         class="me-4 border" alt="Image">
                                         <a href="{{url('admin/productimage/'.$image->id.'/delete')}}" class="d-block">إزالة</a>
                                     </div>

@@ -67,7 +67,7 @@
             <div class="col-lg-3 col-md-4 col-sm-6 mix {{ $products->category->name }}">
                 <div class="product__item">
 
-                    <div class="product__item__pic set-bg" data-setbg="uploads/products/{{$products->image}}">
+                    <div class="product__item__pic set-bg" data-setbg="{{$products->image}}">
                         <ul class="product__hover">
                             @if($products->productImage->isNotEmpty())
                             <img

@@ -63,7 +63,7 @@ h6.bold-and-big {
                                     <td>
                                         @if($cart->productImage->isNotEmpty())
                                         <img
-                                        src="{{ asset($cart->productImage[0]->image) }}"
+                                        src="{{ $cart->productImage[0]->image }}"
                                         style="height:90px; width:90px"
                                             alt="{{ __('messages.no_image') }}" />
                                         @else
