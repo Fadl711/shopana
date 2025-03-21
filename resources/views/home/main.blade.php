@@ -7,22 +7,22 @@
     <meta name="keywords" content="Ashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ANA Shops</title>
+    <title>ANA Shop</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+        rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="{{asset('home/css/bootstrap.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('home/css/font-awesome.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('home/css/elegant-icons.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('home/css/jquery-ui.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('home/css/magnific-popup.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('home/css/owl.carousel.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('home/css/slicknav.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('home/css/style.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('home/css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('home/css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('home/css/elegant-icons.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('home/css/jquery-ui.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('home/css/magnific-popup.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('home/css/owl.carousel.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('home/css/slicknav.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('home/css/style.css') }}" type="text/css">
 </head>
 
 <body>
@@ -38,74 +38,74 @@
     <!-- Categories Section Begin -->
     {{-- @include('home.category') --}}
 
-<!-- Categories Section End -->
+    <!-- Categories Section End -->
 
-<!-- Banner Section Begin -->
-@include('home.banner')
-<!-- Banner Section End -->
+    <!-- Banner Section Begin -->
+    @include('home.banner')
+    <!-- Banner Section End -->
 
-<!-- Product Section Begin -->
-@include('home.product')
-<!-- Product Section End -->
+    <!-- Product Section Begin -->
+    @include('home.product')
+    <!-- Product Section End -->
 
 
-{{-- main content  --}}
-<div class="main-panel">
-    <div class="content-wrapper">
-         @yield('viewcontent')
+    {{-- main content  --}}
+    <div class="main-panel">
+        <div class="content-wrapper">
+            @yield('viewcontent')
+        </div>
     </div>
-</div>
-{{-- end of main content --}}
+    {{-- end of main content --}}
 
 
-{{--  --}}
+    {{--  --}}
 
-<!-- Trend Section Begin -->
+    <!-- Trend Section Begin -->
 
-<!-- Trend Section End -->
+    <!-- Trend Section End -->
 
-<!-- Discount Section Begin -->
+    <!-- Discount Section Begin -->
 
-<!-- Discount Section End -->
+    <!-- Discount Section End -->
 
-<!-- Services Section Begin -->
+    <!-- Services Section Begin -->
 
-<!-- Services Section End -->
+    <!-- Services Section End -->
 
- <!-- Categories Section Begin -->
- @include('home.category')
+    <!-- Categories Section Begin -->
+    @include('home.category')
 
- <!-- Categories Section End -->
+    <!-- Categories Section End -->
 
-<!-- Instagram Begin -->
-@include('home.instagram')
-<!-- Instagram End -->
-<!-- Footer Section Begin -->
-@include('home.footer')
-<!-- Footer Section End -->
+    <!-- Instagram Begin -->
+    @include('home.instagram')
+    <!-- Instagram End -->
+    <!-- Footer Section Begin -->
+    @include('home.footer')
+    <!-- Footer Section End -->
 
-<!-- Search Begin -->
-<div class="search-model">
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-switch">+</div>
-        <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Search here.....">
-        </form>
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
     </div>
-</div>
-<!-- Search End -->
-<!-- Js Plugins -->
-<script src="{{asset('home/js/jquery-3.3.1.min.js')}}"></script>
-<script src="{{asset('home/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('home/js/jquery.magnific-popup.min.js')}}"></script>
-<script src="{{asset('home/js/jquery-ui.min.js')}}"></script>
-<script src="{{asset('home/js/mixitup.min.js')}}"></script>
-<script src="{{asset('home/js/jquery.countdown.min.js')}}"></script>
-<script src="{{asset('home/js/jquery.slicknav.js')}}"></script>
-<script src="{{asset('home/js/owl.carousel.min.js')}}"></script>
+    <!-- Search End -->
+    <!-- Js Plugins -->
+    <script src="{{ asset('home/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('home/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('home/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('home/js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('home/js/mixitup.min.js') }}"></script>
+    <script src="{{ asset('home/js/jquery.countdown.min.js') }}"></script>
+    <script src="{{ asset('home/js/jquery.slicknav.js') }}"></script>
+    <script src="{{ asset('home/js/owl.carousel.min.js') }}"></script>
 
-<script src="{{asset('home/js/jquery.nicescroll.min.js')}}"></script>
-<script src="{{asset('home/js/main.js')}}"></script>
+    <script src="{{ asset('home/js/jquery.nicescroll.min.js') }}"></script>
+    <script src="{{ asset('home/js/main.js') }}"></script>
 
 
 </body>

@@ -44,6 +44,9 @@
         border-radius: 5px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
+    a{
+        text-decoration:none;
+    }
 
     .header__menu ul li .dropdown li {
         margin: 10px 0;
@@ -97,7 +100,7 @@
             display: block;
             cursor: pointer;
             font-size: 24px;
-            margin: 30px 0;
+            margin: 0 0 30px 0;
         }
 
         .header__menu.active {
@@ -106,6 +109,11 @@
 
         .header__logo {
             max-width: 30%
+        }
+        .header__right__auth{
+            font-size: 20px;
+            font-weight: bold;
+            transform: translate(20px, -60px);
         }
     }
 </style>
@@ -124,10 +132,10 @@
                     <nav class="header__menu" id="navbar" style="direction: rtl">
                         <ul>
                             <li class="{{ Request::is('/') ? 'active' : '' }}">
-                                <a style="font-size: 15px;" href="{{ url('/') }}">{{ __('messages.home') }}</a>
+                                <a style="font-size: 20px; font-weight:bold;" href="{{ url('/') }}">{{ __('messages.home') }}</a>
                             </li>
                             <li class="{{ Request::is('category/men*') ? 'active' : '' }}">
-                                <a style="font-size: 15px;"
+                                <a style="font-size: 20px; font-weight:bold;"
                                     href="{{ url('category/men') }}">{{ __('messages.men') }}</a>
                                 <ul class="dropdown">
                                     @foreach ($categories as $category)
@@ -139,7 +147,7 @@
                                 </ul>
                             </li>
                             <li class="{{ Request::is('category/women*') ? 'active' : '' }}">
-                                <a style="font-size: 15px;"
+                                <a style="font-size: 20px; font-weight:bold;"
                                     href="{{ url('category/women') }}">{{ __('messages.women') }}</a>
                                 <ul class="dropdown">
                                     @foreach ($categories as $category)
@@ -151,7 +159,7 @@
                                 </ul>
                             </li>
                             <li class="{{ Request::is('category/girls*') ? 'active' : '' }}">
-                                <a style="font-size: 15px;"
+                                <a style="font-size: 20px; font-weight:bold;"
                                     href="{{ url('category/girls') }}">{{ __('messages.girls') }}</a>
                                 <ul class="dropdown">
                                     @foreach ($categories as $category)
@@ -163,7 +171,7 @@
                                 </ul>
                             </li>
                             <li class="{{ Request::is('category/boys*') ? 'active' : '' }}">
-                                <a style="font-size: 15px;"
+                                <a style="font-size: 20px; font-weight:bold;"
                                     href="{{ url('category/boys') }}">{{ __('messages.boys') }}</a>
                                 <ul class="dropdown">
                                     @foreach ($categories as $category)
@@ -175,7 +183,7 @@
                                 </ul>
                             </li>
                             <li class="{{ Request::is('category/newborn*') ? 'active' : '' }}">
-                                <a style="font-size: 15px;"
+                                <a style="font-size: 20px; font-weight:bold;"
                                     href="{{ url('category/newborn') }}">{{ __('messages.newborn') }}</a>
                                 <ul class="dropdown">
                                     @foreach ($categories as $category)
@@ -187,7 +195,7 @@
                                 </ul>
                             </li>
                             <li class="{{ Request::is('category/accessories*') ? 'active' : '' }}">
-                                <a style="font-size: 15px;"
+                                <a style="font-size: 20px; font-weight:bold;"
                                     href="{{ url('category/accessories') }}">{{ __('messages.accessories') }}</a>
                                 <ul class="dropdown">
                                     @foreach ($categories as $category)
@@ -199,7 +207,7 @@
                                 </ul>
                             </li>
                             <li class="{{ Request::is('category/nuts*') ? 'active' : '' }}">
-                                <a style="font-size: 15px; margin:0 10px 0 0"
+                                <a style="font-size: 20px; font-weight:bold; margin:0 10px 0 0"
                                     href="{{ url('category/nuts') }}">{{ __('messages.nuts') }}</a>
                                 <ul class="dropdown">
                                     @foreach ($categories as $category)
@@ -253,6 +261,13 @@
                 <div class="canvas__open" id="mobile-menu-toggle">
                     <i class="fa fa-bars"></i>
                 </div>
+                                        @auth
+                        @else
+                            <div class="header__right__auth">
+                                <a href="{{ route('login') }}">{{ __('messages.login') }}</a>
+                                <a href="{{ route('register') }}">{{ __('messages.register') }}</a>
+                            </div>
+                        @endauth
                 @auth
                     <ul class="header__right__widget">
                     <li>
