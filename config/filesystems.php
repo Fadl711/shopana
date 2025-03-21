@@ -37,13 +37,13 @@ return [
         ],
         'r2' => [
             'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION', 'auto'),
-            'bucket' => 'fls-9e7aa932-bd81-418f-bc2c-459da5e705c6', // TEMPORARY HARDCODED VALUE
-            'endpoint' => env('AWS_ENDPOINT'),
-            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
-            'url' => env('AWS_URL'),
+            'key' => '97d0dac9a6076581dc0fd63439c693e0',
+            'secret' => '5eb17199cd2ac11608dfa0a621add982ccd8187b43d3cf40d2b636a0b5bc4db9',
+            'region' => 'auto',
+            'bucket' => 'fls-9e7aa932-bd81-418f-bc2c-459da5e705c6',
+            'endpoint' => 'https://367be3a2035528943240074d0096e0cd.r2.cloudflarestorage.com',
+            'use_path_style_endpoint' => true,
+            'url' => 'https://fls-9e7aa932-bd81-418f-bc2c-459da5e705c6.laravel.cloud',
             'visibility' => 'public',
         ],
 
