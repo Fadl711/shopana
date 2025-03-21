@@ -2,3 +2,11 @@ use Illuminate\Support\Facades\Storage;
 
 
 Storage::disk('r2')->directories()
+use Illuminate\Support\Facades\Storage;
+dump(config('filesystems.disks.r2'))
+
+
+use Illuminate\Support\Facades\Storage;
+dump(config('session'))
+
+
