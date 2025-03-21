@@ -35,26 +35,16 @@ return [
             'root' => storage_path('app'),
             'throw' => false,
         ],
-
-        'public' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
-            'throw' => false,
-        ],
         'r2' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'region' => env('AWS_DEFAULT_REGION', 'auto'),
             'bucket' => env('AWS_BUCKET'),
-            'endpoint' => env('AWS_ENDPOINT', 'https://367be3a2035528943240074d0096e0cd.r2.cloudflarestorage.com'),
+            'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
-            'url' => env('AWS_URL', 'https://fls-9e7aa932-bd81-418f-bc2c-459da5e705c6.laravel.cloud'),
+            'url' => env('AWS_URL'),
             'visibility' => 'public',
-            'throw' => true,
-
         ],
 
         's3' => [
