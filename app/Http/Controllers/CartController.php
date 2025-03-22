@@ -25,6 +25,7 @@ class CartController extends Controller
 
         } else {
             $cartItem = Cart::where('product_id', $id)->where('user_id', $user_id)->first();
+
         }
 
         if ($cartItem) {
@@ -40,10 +41,8 @@ class CartController extends Controller
                 $cartItem->save();
                 toast('تم اضافة المنتج الى السلة!', 'success');
                 /* return redirect()->to($request->url); */
-
                 return redirect('/cart')->with('url', $request->url);
             } else {
-
                 $errorMessage = " لايوجد كمية حالية   {$remainingQuantity} ";
                 return redirect()->back()->with('error', $errorMessage);
             }
@@ -80,9 +79,9 @@ class CartController extends Controller
 
                 $cart->save();
                 toast('Product added to cart!', 'success');
-
                 return redirect('/cart')->with('url', $request->url);
             } else {
+
                 $errorMessage = "لايوجد كمية متاحة  {$product->quantity}";
                 return redirect()->back()->with('error', $errorMessage);
             }
@@ -107,9 +106,9 @@ class CartController extends Controller
             //
             // dd( $product);
             // dd($product->size_id);
-            $size=Sizes::where('id',$cartItem->size_id)->first();
-            // dd($size);
-            if(!is_null($size)){
+/*             $size=Sizes::where('id',$cartItem->size_id)->first();
+ */            // dd($size);
+/*             if(!is_null($size)){
                 // dd("here");
                  $sizeName=$size->size;
                  $productSizeQty=$product->$sizeName;
@@ -117,7 +116,7 @@ class CartController extends Controller
                  if($product && $cartItem->quantity > $productSizeQty){
                     $cartItem->delete();
                 }
-            }
+            } */
 
             if ($product && $cartItem->quantity > $product->quantity) {
                 // Product no longer available in the required quantity, remove the cart item

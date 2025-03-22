@@ -49,7 +49,7 @@ class OrderController extends Controller
         $whatsappMessage .= "المنتجات:\n";
         foreach ($orders as $order) {
             $nameC = Products::find($order['product_id']);
-            $whatsappMessage .= "رقم المنتج: {$order['product_id']}\n"; // رقم المنتج في سطر لوحده
+            $whatsappMessage .= "اسم المنتج: {$nameC->name}\n"; // رقم المنتج في سطر لوحده
             $whatsappMessage .= " الفئه: {$nameC->category->name}\n"; // رقم المنتج في سطر لوحده
             $whatsappMessage .= "اللون: {$order['color']}\n"; // اللون في سطر لوحده
             $whatsappMessage .= "الحجم: {$order['size']}\n"; // الحجم في سطر لوحده
@@ -60,7 +60,7 @@ class OrderController extends Controller
         $whatsappMessage .= "الإجمالي: $totalAmount\n"; // الإجمالي في سطر لوحده
 
         // إنشاء رابط واتساب
-        $whatsappUrl = "https://api.whatsapp.com/send?phone=+967772828494&text=" . urlencode($whatsappMessage);
+        $whatsappUrl = "https://api.whatsapp.com/send?phone=+967784300322&text=" . urlencode($whatsappMessage);
 
         // إعادة التوجيه إلى واتساب
         return redirect()->away($whatsappUrl);
